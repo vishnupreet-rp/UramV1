@@ -1,0 +1,36 @@
+#Import azure table service package#
+
+from azure.storage.table import TableService, Entity
+
+
+#Specify account name and key to establish connection#
+
+service=TableService(account_name='', account_key='')
+
+
+#Create table and specify table name#
+
+service.create_table('sampletable')
+
+
+#Add entity using dictionary#
+
+entity={'Partitionkey':'Beneficiary', 'Rowkey':'001', 'Name':'xyz'}
+service.insert_entity('sampletable', entity)
+
+
+#Read an entity using partition and row key#
+
+service.get_entity('sampletable', 'Beneficiary', '001')
+
+
+#Update entity using dictionary#
+
+entity={'Partitionkey':'Beneficiary', 'Rowkey':'001', 'Name':'abc'}
+service.update_table('sampletable', entity)
+
+
+#Delete entity using partition and row key#
+
+service.delete_entity('sampletable', 'Beneficiary', '001')
+
